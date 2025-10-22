@@ -38,9 +38,8 @@ SECRET_KEY = 'django-insecure-h2-37+5x&skf!k!q@p!&3lbm45!@h$**zn-_)-ao81!^yp5$m0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "eonsyntax.vercel.app"]
-CSRF_TRUSTED_ORIGINS = ["https://eonsyntax.vercel.app"]
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "eonsyntax.vercel.app", "rportb.onrender.com"]
+CSRF_TRUSTED_ORIGINS = ["https://eonsyntax.vercel.app", "https://rportb.onrender.com"]
 
 USE_CLOUDINARY = os.getenv("USE_CLOUDINARY", "False").lower() == "true"
 
@@ -74,11 +73,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://eonsyntax.vercel.app",
+    "https://rportb.onrender.com",
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'Manager.urls'
 
