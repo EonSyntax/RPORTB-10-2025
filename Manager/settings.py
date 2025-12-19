@@ -105,6 +105,16 @@ WSGI_APPLICATION = 'Manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# For testing supabase/postgres locally, uncomment below and comment the conditional block
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         os.environ.get("DATABASE_URL"),
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
+
+# Production and development database settings
 if not DEBUG:
     DATABASES = {
         'default': dj_database_url.config(

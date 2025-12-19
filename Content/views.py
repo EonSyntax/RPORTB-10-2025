@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-from .models import Project, Testimonial
-from .serializers import ProjectSerializer, TestimonialSerializer
+from .models import Project, Testimonial, Certificate
+from .serializers import ProjectSerializer, TestimonialSerializer, CertificateSerializer
 from django.http import HttpResponse
 from django.db import connection
 
@@ -29,4 +29,10 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
 class TestimonialViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Testimonial.objects.filter(is_active=True)
     serializer_class = TestimonialSerializer
+    permission_classes = [AllowAny]
+
+
+class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Certificate.objects.filter(is_active=True)
+    serializer_class = CertificateSerializer
     permission_classes = [AllowAny]

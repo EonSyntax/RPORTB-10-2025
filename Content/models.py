@@ -30,6 +30,7 @@ class Project(models.Model):
 
 
 
+
 class Testimonial(models.Model):
     name = models.CharField(max_length=100)
     designation = models.CharField(max_length=150)
@@ -48,3 +49,33 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.name} — {self.designation}"
+
+
+
+class Certificate(models.Model):
+    organization_name = models.CharField(max_length=200)
+    certificate_name = models.CharField(max_length=200)
+    certificate_id = models.CharField(max_length=200, blank=True, null=True)
+    issue_date = models.DateField()
+    expiry_date = models.DateField(blank=True, null=True)
+    verify_url = models.URLField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    image = CloudinaryField(
+        'image',
+        blank=True,
+        null=True,
+        default='default'
+    )
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.certificate_name} — {self.organization_name}"
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return ""

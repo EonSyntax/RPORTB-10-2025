@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Testimonial
+from .models import Project, Testimonial, Certificate
 
 # Register your models here.
 
@@ -14,4 +14,11 @@ class TestimonialAdmin(admin.ModelAdmin):
     list_display = ("name", "designation", "is_active", "created_at")
     list_filter = ("is_active",)
     search_fields = ("name", "designation", "quote")
+
+
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ("certificate_name", "organization_name", "is_active", "created_at")
+    list_filter = ("is_active",)
+    search_fields = ("certificate_name", "organization_name", "certificate_id")
 
